@@ -2,7 +2,9 @@ import sys
 #import cgi
 import socket
 import RPi.GPIO as GPIO
+import time
 
+power= "OFF"
 
 def ProjectorTurn(power, monitor_ip):
     # if len(sys.argv) == 1:
@@ -36,9 +38,20 @@ def ProjectorTurn(power, monitor_ip):
     print (recv_data)
     new.close()
 
-GPIO.setwarnings(False) # Ignore warning for now
-GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
-GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # Set pin 10 to be an input pin and set initial value to be pulled low (off)
-GPIO.add_event_detect(10,GPIO.RISING,callback=ProjectorTurn("ON","10.0.0.1")) # Setup event on pin 10 rising edge
+while True:
+    try:
+        GPIO.setwarnings(False) # Ignore warning for now
+        GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
+        GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # Set pin 10 to be an input pin and set initial value to be pulled low (off)
+        if power == 'OFF':
+            GPIO.add_event_detect(10,GPIO.RISING,callback=ProjectorTurn("ON","10.0.0.1")) # Setup event on pin 10 rising edge
+        else:
+            GPIO.add_event_detect(10,GPIO.RISING,callback=ProjectorTurn("OFF","10.0.0.1")) # Setup event on pin 10 rising edge
+    except:
+        print("Bedienung Fehlgeschlagen")
+        time.sleep(30)
 
-GPIO.cleanup() # Clean up
+
+        
+
+    GPIO.cleanup() # Clean up
