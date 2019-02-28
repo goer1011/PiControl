@@ -1,5 +1,5 @@
 import sys
-#import cgi
+import cgi
 import socket
 import RPi.GPIO as GPIO
 import time
