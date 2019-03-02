@@ -5,7 +5,7 @@ import socket
 import sys
 import protocol
 import cgi
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import time
 
 class ProjectorError(Exception):
@@ -116,7 +116,7 @@ class Projector(object):
 
 if __name__ == "__main__":
     projector = Projector.from_address('192.168.0.100')
-while true:
+while True:
     try:
         GPIO.setwarnings(False) # Ignore warning for now
         GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
