@@ -116,7 +116,7 @@ class Projector(object):
 
 if __name__ == "__main__":
     projector = Projector.from_address('192.168.0.100')
-
+while true:
     try:
         GPIO.setwarnings(False) # Ignore warning for now
         GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
@@ -125,4 +125,4 @@ if __name__ == "__main__":
         GPIO.add_event_detect(10,GPIO.RISING,callback=projector.set_power(ON, "ABCDEFG")) # Setup event on pin 10 rising edge
     except:
         print("Bedienung Fehlgeschlagen")
-        time.sleep(30)
+        time.sleep(5)
