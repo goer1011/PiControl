@@ -26,9 +26,11 @@ GET_POWER_STATES = '?'
 
 POWR_BODY = 'POWR'
 
-OFF='off'
+OFF ='off'
 
-ON='on'
+ON ='on'
+
+POWER = 'off'
 
 class Projector(object):
     def __init__(self, f):
@@ -121,8 +123,11 @@ while True:
         GPIO.setwarnings(False) # Ignore warning for now
         GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
         GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # Set pin 10 to be an input pin and set initial value to be pulled low (off)
-        GPIO.add_event_detect(10,GPIO.RISING,callback=projector.set_power(OFF, "ABCDEFG")) # Setup event on pin 10 rising edge
-        GPIO.add_event_detect(10,GPIO.RISING,callback=projector.set_power(ON, "ABCDEFG")) # Setup event on pin 10 rising edge
+        if(POWER == 'off'):
+            GPIO.add_event_detect(10,GPIO.RISING,callback=projector.set_power(ON, "ABCDEFG")) # Setup event on pin 10 rising edge
+            POWER = 'on'
+        else:
+            GPIO.add_event_detect(10,GPIO.RISING,callback=projector.set_power(OFF, "ABCDEFG")) # Setup event on pin 10 rising edge
     except:
         print("Bedienung Fehlgeschlagen")
         time.sleep(5)
