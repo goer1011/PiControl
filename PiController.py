@@ -117,17 +117,20 @@ class Projector(object):
 
 
 if __name__ == "__main__":
+    #Connect to the projector
     projector = Projector.from_address('192.168.0.100')
-while True:
-    try:
-        GPIO.setwarnings(False) # Ignore warning for now
-        GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
-        GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # Set pin 10 to be an input pin and set initial value to be pulled low (off)
-        if(POWER == 'off'):
-            GPIO.add_event_detect(10,GPIO.RISING,callback=projector.set_power(ON, "ABCDEFG")) # Setup event on pin 10 rising edge
-            POWER = 'on'
-        else:
-            GPIO.add_event_detect(10,GPIO.RISING,callback=projector.set_power(OFF, "ABCDEFG")) # Setup event on pin 10 rising edge
-    except:
-        print("Bedienung Fehlgeschlagen")
-        time.sleep(5)
+
+#when you want to use buttons.
+# while True:
+#     try:
+#         GPIO.setwarnings(False) # Ignore warning for now
+#         GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
+#         GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # Set pin 10 to be an input pin and set initial value to be pulled low (off)
+#         if(POWER == 'off'):
+#             GPIO.add_event_detect(10,GPIO.RISING,callback=projector.set_power(ON, "ABCDEFG")) # Setup event on pin 10 rising edge
+#             POWER = 'on'
+#         else:
+#             GPIO.add_event_detect(10,GPIO.RISING,callback=projector.set_power(OFF, "ABCDEFG")) # Setup event on pin 10 rising edge
+#     except:
+#         print("Bedienung Fehlgeschlagen")
+#         time.sleep(5)
