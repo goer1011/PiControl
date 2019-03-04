@@ -34,12 +34,11 @@ __I didn’t try it out by myself, so it may not work. __
 import Projector
 projector = Projector.from_address('10.1.1.1')
 # authenticate is required even if there is no password
-print(projector.get_power())
+print(projector.get_power("ABCDEFG"))
 # off
 projector.set_power(ON, "ABCDEFG"))
 ```
 ## Problems I had
----
 To get the IP address of the projector Epson provides a Tool where you can control it (https://www.epson.de/epson-projector-software#easymp-multi). If you don’t want to run it on a raspberry or similar I highly recommend using it instead.
 
 ### Troubleshooting
