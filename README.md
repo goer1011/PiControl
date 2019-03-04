@@ -26,7 +26,7 @@ The library supports the following python versions:
 * python2.7
 
 for it to work on Python 3.4/3.5, you should put in newline where it is commented you to.
-__I didn’t try it out by myself, so it may not work. __ 
+__I didn’t try it out by myself, so it may not work.__ 
 * python3.4
 * python3.5
 
